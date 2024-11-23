@@ -1,60 +1,57 @@
-// src/pages/Login.jsx
 import React, { useState } from 'react';
+import { Checkbox, FormControlLabel, Typography } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { TextField, Button, Container, Typography, Box } from '@mui/material';
 import authService from '../services/authService';
+import { LoginContainer, LoginForm, InputField, SubmitButton } from '../assets/styles/LoginPage.styles'; // Importar estilos
 
-function Login() {
-  const [username, setUsername] = useState('');
+function LoginPage() {
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault(); // Previene el comportamiento predeterminado del formulario
     try {
-      const response = await authService.login({ username, password });
+      const response = await authService.login({ username: email, password });
       if (response.data.message === 'Login successful') {
-        localStorage.setItem('auth', 'true');  // Guardar el estado de autenticación
-        navigate('/');  // Redirigir a la página principal
+        localStorage.setItem('auth', 'true'); // Establece el estado de autenticación
+        navigate('/'); // Redirige a la página principal
+      } else {
+        alert('Credenciales incorrectas');
       }
-    } catch (err) {
-      setError('Usuario o contraseña incorrectos');
+    } catch (error) {
+      console.error('Error al iniciar sesión:', error);
+      alert('Error al iniciar sesión');
     }
-  };
+  };  
 
   return (
-    <Container maxWidth="xs">
-      <Box mt={8} textAlign="center">
-        <Typography variant="h4" gutterBottom>
-          Iniciar Sesión
+    <LoginContainer>
+      <LoginForm component="form" onSubmit={handleSubmit}>
+        <Typography variant="h5" gutterBottom style={{ textAlign: 'center' }}>
+          Sign in
         </Typography>
-        {error && <Typography color="error">{error}</Typography>}
-        <form onSubmit={handleLogin}>
-          <TextField
-            label="Usuario"
-            variant="outlined"
-            margin="normal"
-            fullWidth
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <TextField
-            label="Contraseña"
-            type="password"
-            variant="outlined"
-            margin="normal"
-            fullWidth
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <Button type="submit" variant="contained" color="primary" fullWidth>
-            Iniciar Sesión
-          </Button>
-        </form>
-      </Box>
-    </Container>
+        <InputField
+          label="Email"
+          variant="outlined"
+          fullWidth
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <InputField
+          label="Password"
+          variant="outlined"
+          type="password"
+          fullWidth
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <SubmitButton type="submit" fullWidth>
+          Sign in
+        </SubmitButton>
+      </LoginForm>
+    </LoginContainer>
   );
 }
 
-export default Login;
+export default LoginPage;
