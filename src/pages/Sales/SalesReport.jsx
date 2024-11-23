@@ -56,15 +56,65 @@ function SalesReport() {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {report.products_sold.map((product) => (
-                  <TableRow key={product.product_id}>
-                    <TableCell>{product.product_name}</TableCell>
-                    <TableCell>{product.quantity_sold}</TableCell>
+                {report?.products_sold?.length > 0 ? (
+                  report.products_sold.map((product) => (
+                    <TableRow key={product.product_id}>
+                      <TableCell>{product.product_name}</TableCell>
+                      <TableCell>{product.quantity_sold}</TableCell>
+                    </TableRow>
+                  ))
+                ) : (
+                  <TableRow>
+                    <TableCell colSpan={2}>No hay datos disponibles</TableCell>
                   </TableRow>
-                ))}
+                )}
               </TableBody>
             </Table>
           </TableContainer>
+
+          <Box sx={{ mt: 4 }}>
+            <Typography variant="h6">Productos Más Vendidos</Typography>
+            <TableContainer component={Paper} sx={{ mt: 2 }}>
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Producto</TableCell>
+                    <TableCell>Cantidad Vendida</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {report.most_sold_products.map((product) => (
+                    <TableRow key={product.product_id}>
+                      <TableCell>{product.product_name}</TableCell>
+                      <TableCell>{product.quantity_sold}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Box>
+
+          <Box sx={{ mt: 4 }}>
+            <Typography variant="h6">Productos Menos Vendidos</Typography>
+            <TableContainer component={Paper} sx={{ mt: 2 }}>
+              <Table>
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Producto</TableCell>
+                    <TableCell>Cantidad Vendida</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {report.least_sold_products.map((product) => (
+                    <TableRow key={product.product_id}>
+                      <TableCell>{product.product_name}</TableCell>
+                      <TableCell>{product.quantity_sold}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Box>
         </Box>
       )}
     </Box>
