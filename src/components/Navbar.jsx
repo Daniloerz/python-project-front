@@ -1,55 +1,39 @@
 // src/components/Navbar.jsx
 import React from 'react';
-import { AppBar, Toolbar, Typography, Button, Box } from '@mui/material';
-import { Link, useNavigate } from 'react-router-dom';
+import { Toolbar, Typography, Box } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { StyledAppBar, StyledLink, StyledButton } from '../assets/styles/Navbar.styles';
 
 function Navbar() {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    localStorage.removeItem('auth');  // Elimina el estado de autenticación
-    navigate('/login');  // Redirige al login
+    localStorage.removeItem('auth'); // Elimina el estado de autenticación
+    navigate('/login'); // Redirige al login
   };
 
   return (
-    <AppBar position="static">
+    <StyledAppBar position="static">
       <Toolbar>
-        <Typography variant="h6" sx={{ flexGrow: 1 }}>
-          <Link to="/" style={{ color: 'inherit', textDecoration: 'none' }}>
-            Sistema de Gestión de Tienda
-          </Link>
+        <Typography
+          variant="h6"
+          sx={{ flexGrow: 1, fontWeight: 'bold', fontSize: '18px', color: '#58A6FF' }}
+        >
+          Sistema de Gestión de Tienda
         </Typography>
         <Box>
-          <Button color="inherit" component={Link} to="/products">
-            Productos
-          </Button>
-          <Button color="inherit" component={Link} to="/catalog">
-            Catálogo
-          </Button>
-          <Button color="inherit" component={Link} to="/sales">
-            Ventas
-          </Button>
-          <Button color="inherit" component={Link} to="/reservations">
-            Reservas
-          </Button>
-          <Button color="inherit" component={Link} to="/credit">
-            Crear Cuenta de Crédito
-          </Button>
-          <Button color="inherit" component={Link} to="/credit/accounts">
-            Ver Cuentas de Crédito
-          </Button>
-          <Button color="inherit" component={Link} to="/credit/purchase">
-            Registrar Compra a Crédito
-          </Button>
-          <Button color="inherit" component={Link} to="/reports">
-            Informes
-          </Button>
-          <Button color="inherit" onClick={handleLogout}>
-            Cerrar Sesión
-          </Button>
+          <StyledLink to="/products">Productos</StyledLink>
+          <StyledLink to="/catalog">Catálogo</StyledLink>
+          <StyledLink to="/sales">Ventas</StyledLink>
+          <StyledLink to="/reservations">Reservas</StyledLink>
+          <StyledLink to="/credit">Crear Cuenta de Crédito</StyledLink>
+          <StyledLink to="/credit/accounts">Ver Cuentas de Crédito</StyledLink>
+          <StyledLink to="/credit/purchase">Registrar Compra a Crédito</StyledLink>
+          <StyledLink to="/reports">Informes</StyledLink>
+          <StyledButton onClick={handleLogout}>Cerrar Sesión</StyledButton>
         </Box>
       </Toolbar>
-    </AppBar>
+    </StyledAppBar>
   );
 }
 
