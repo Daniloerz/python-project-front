@@ -1,4 +1,3 @@
-// src/pages/Credit/CreditAccountForm.jsx
 import React, { useState } from 'react';
 import { TextField, Button, Typography, Box } from '@mui/material';
 import productService from '../../services/productService';
@@ -19,11 +18,39 @@ function CreditAccountForm() {
   };
 
   return (
-    <Box sx={{ mt: 4 }}>
-      <Typography variant="h4" gutterBottom>
+    <Box
+      sx={{
+        mt: 4,
+        px: 3,
+        py: 2,
+        backgroundColor: '#F5F5F5', // Fondo claro para el contenedor
+        borderRadius: '8px', // Bordes redondeados
+        boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', // Sombra suave
+        maxWidth: '600px', // Ancho máximo del formulario
+        margin: 'auto', // Centrado horizontal
+      }}
+    >
+      <Typography
+        variant="h4"
+        gutterBottom
+        sx={{
+          color: '#1976D2', // Azul para el título
+          fontWeight: 'bold',
+          textAlign: 'center',
+        }}
+      >
         Crear Cuenta de Crédito
       </Typography>
-      <Box component="form" onSubmit={handleCreateCreditAccount} sx={{ mb: 4 }}>
+      <Box
+        component="form"
+        onSubmit={handleCreateCreditAccount}
+        sx={{
+          backgroundColor: '#FFFFFF', // Fondo blanco para el formulario
+          borderRadius: '8px',
+          padding: '16px',
+          boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.05)', // Sombra ligera
+        }}
+      >
         <TextField
           label="Nombre del Cliente"
           variant="outlined"
@@ -31,8 +58,26 @@ function CreditAccountForm() {
           fullWidth
           value={customerName}
           onChange={(e) => setCustomerName(e.target.value)}
+          sx={{
+            backgroundColor: '#FFFFFF', // Fondo blanco para el campo
+            borderRadius: '8px',
+            '.MuiOutlinedInput-root': {
+              borderRadius: '8px', // Bordes redondeados para el input
+            },
+          }}
         />
-        <Button type="submit" variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          fullWidth
+          sx={{
+            mt: 2,
+            textTransform: 'none', // Evitar texto en mayúsculas
+            fontWeight: 'bold',
+            borderRadius: '8px', // Bordes redondeados
+          }}
+        >
           Crear Cuenta de Crédito
         </Button>
       </Box>

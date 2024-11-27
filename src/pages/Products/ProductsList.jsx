@@ -94,29 +94,141 @@ function ProductsList() {
 
   return (
     <Box sx={{ mt: 4 }}>
-      <Typography variant="h4" gutterBottom>
+      <Typography 
+        variant="h4" 
+        gutterBottom 
+        sx={{ color: '#1976D2', fontWeight: 'bold' }}
+      >
         Gestión de Productos
       </Typography>
 
+
       {/* Formulario para agregar o editar producto */}
-      <Box component="form" onSubmit={handleAddOrUpdateProduct} sx={{ mb: 4 }}>
-        <TextField label="Nombre" variant="outlined" margin="normal" fullWidth value={name} onChange={(e) => setName(e.target.value)} />
-        <TextField label="Descripción" variant="outlined" margin="normal" fullWidth value={description} onChange={(e) => setDescription(e.target.value)} />
-        <TextField label="Precio" variant="outlined" margin="normal" type="number" fullWidth value={price} onChange={(e) => setPrice(e.target.value)} />
-        <TextField label="Cantidad en Existencia" variant="outlined" margin="normal" type="number" fullWidth value={quantity} onChange={(e) => setQuantity(e.target.value)} />
-        <Button type="submit" variant="contained" color="primary" fullWidth sx={{ mt: 2 }}>
+      <Box
+        component="form"
+        onSubmit={handleAddOrUpdateProduct}
+        sx={{ mb: 4 }}
+      >
+        <TextField
+          label="Nombre"
+          variant="outlined"
+          margin="normal"
+          fullWidth
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          sx={{
+            backgroundColor: '#FFFFFF', // Fondo blanco
+            borderRadius: '8px', // Bordes redondeados
+          }}
+          InputProps={{
+            style: {
+              backgroundColor: '#FFFFFF', // Fondo blanco interno
+              borderRadius: '8px', // Bordes redondeados internos
+            },
+          }}
+        />
+        <TextField
+          label="Descripción"
+          variant="outlined"
+          margin="normal"
+          fullWidth
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+          sx={{
+            backgroundColor: '#FFFFFF', // Fondo blanco
+            borderRadius: '8px', // Bordes redondeados
+          }}
+          InputProps={{
+            style: {
+              backgroundColor: '#FFFFFF', // Fondo blanco interno
+              borderRadius: '8px', // Bordes redondeados internos
+            },
+          }}
+        />
+        <TextField
+          label="Precio"
+          variant="outlined"
+          margin="normal"
+          type="number"
+          fullWidth
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
+          sx={{
+            backgroundColor: '#FFFFFF', // Fondo blanco
+            borderRadius: '8px', // Bordes redondeados
+          }}
+          InputProps={{
+            style: {
+              backgroundColor: '#FFFFFF', // Fondo blanco interno
+              borderRadius: '8px', // Bordes redondeados internos
+            },
+          }}
+        />
+        <TextField
+          label="Cantidad en Existencia"
+          variant="outlined"
+          margin="normal"
+          type="number"
+          fullWidth
+          value={quantity}
+          onChange={(e) => setQuantity(e.target.value)}
+          sx={{
+            backgroundColor: '#FFFFFF', // Fondo blanco
+            borderRadius: '8px', // Bordes redondeados
+          }}
+          InputProps={{
+            style: {
+              backgroundColor: '#FFFFFF', // Fondo blanco interno
+              borderRadius: '8px', // Bordes redondeados internos
+            },
+          }}
+        />
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          fullWidth
+          sx={{ mt: 2 }}
+        >
           {editingProductId ? 'Actualizar Producto' : 'Agregar Producto'}
         </Button>
       </Box>
 
       {/* Formulario para registrar venta */}
-      <Typography variant="h5" gutterBottom>
+      <Typography 
+        variant="h4" 
+        gutterBottom 
+        sx={{ color: '#1976D2', fontWeight: 'bold' }}
+      >
         Registrar Venta
       </Typography>
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 4 }}>
-        <FormControl fullWidth>
+      <Box
+        sx={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: 2,
+          mb: 4,
+          backgroundColor: '#F5F5F5', // Fondo más claro para contraste
+          padding: '16px', // Espaciado interno
+          borderRadius: '8px', // Bordes redondeados
+          boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', // Sombra suave
+        }}
+      >
+        <FormControl
+          fullWidth
+          sx={{
+            backgroundColor: '#FFFFFF', // Fondo blanco para el select
+            borderRadius: '8px', // Bordes redondeados
+            '.MuiInputBase-root': {
+              borderRadius: '8px', // Bordes redondeados internos
+            },
+          }}
+        >
           <InputLabel>Producto</InputLabel>
-          <Select value={saleProductId} onChange={(e) => setSaleProductId(e.target.value)}>
+          <Select
+            value={saleProductId}
+            onChange={(e) => setSaleProductId(e.target.value)}
+          >
             {products.map((product) => (
               <MenuItem key={product.id} value={product.id}>
                 {product.name}
@@ -124,36 +236,99 @@ function ProductsList() {
             ))}
           </Select>
         </FormControl>
-        <TextField label="Cantidad" variant="outlined" type="number" fullWidth value={saleQuantity} onChange={(e) => setSaleQuantity(e.target.value)} />
-        <Button variant="contained" color="primary" onClick={handleSale}>
+
+        <TextField
+          label="Cantidad"
+          variant="outlined"
+          type="number"
+          fullWidth
+          value={saleQuantity}
+          onChange={(e) => setSaleQuantity(e.target.value)}
+          sx={{
+            backgroundColor: '#FFFFFF', // Fondo blanco
+            borderRadius: '8px', // Bordes redondeados
+            '.MuiOutlinedInput-root': {
+              borderRadius: '8px', // Bordes redondeados internos
+            },
+          }}
+        />
+
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleSale}
+          sx={{
+            padding: '10px 20px',
+            fontWeight: 'bold',
+            borderRadius: '8px', // Bordes redondeados
+            textTransform: 'none', // Quitar mayúsculas automáticas
+          }}
+        >
           Registrar Venta
         </Button>
       </Box>
 
       {/* Tabla de productos */}
-      <TableContainer component={Paper}>
+      <TableContainer
+        component={Paper}
+        sx={{
+          borderRadius: '8px', // Bordes redondeados
+          boxShadow: '0px 4px 10px rgba(0, 0, 0, 0.1)', // Sombra suave
+          overflow: 'hidden', // Evitar que el contenido sobresalga de los bordes
+        }}
+      >
         <Table>
           <TableHead>
-            <TableRow>
-              <TableCell>Nombre</TableCell>
-              <TableCell>Descripción</TableCell>
-              <TableCell>Precio</TableCell>
-              <TableCell>Cantidad en Existencia</TableCell>
-              <TableCell>Acciones</TableCell>
+            <TableRow
+              sx={{
+                backgroundColor: '#1976D2', // Color de fondo azul para el encabezado
+              }}
+            >
+              <TableCell sx={{ color: '#FFFFFF', fontWeight: 'bold' }}>Nombre</TableCell>
+              <TableCell sx={{ color: '#FFFFFF', fontWeight: 'bold' }}>Descripción</TableCell>
+              <TableCell sx={{ color: '#FFFFFF', fontWeight: 'bold' }}>Precio</TableCell>
+              <TableCell sx={{ color: '#FFFFFF', fontWeight: 'bold' }}>Cantidad en Existencia</TableCell>
+              <TableCell sx={{ color: '#FFFFFF', fontWeight: 'bold' }}>Acciones</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {products.map((product) => (
-              <TableRow key={product.id}>
+              <TableRow
+                key={product.id}
+                sx={{
+                  '&:nth-of-type(odd)': { backgroundColor: '#F9FAFB' }, // Fondo alternado para filas impares
+                  '&:nth-of-type(even)': { backgroundColor: '#FFFFFF' }, // Fondo blanco para filas pares
+                  '&:hover': { backgroundColor: '#E3F2FD' }, // Fondo al pasar el mouse
+                }}
+              >
                 <TableCell>{product.name}</TableCell>
                 <TableCell>{product.description}</TableCell>
-                <TableCell>{product.price}</TableCell>
+                <TableCell>${product.price.toFixed(2)}</TableCell>
                 <TableCell>{product.quantity}</TableCell>
                 <TableCell>
-                  <Button variant="outlined" color="primary" onClick={() => handleEdit(product)}>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    size="small"
+                    onClick={() => handleEdit(product)}
+                    sx={{
+                      textTransform: 'none', // Evitar texto en mayúsculas
+                      borderRadius: '8px', // Bordes redondeados
+                      mr: 1,
+                    }}
+                  >
                     Editar
                   </Button>
-                  <Button variant="outlined" color="secondary" onClick={() => handleDelete(product.id)} sx={{ ml: 1 }}>
+                  <Button
+                    variant="contained"
+                    color="error"
+                    size="small"
+                    onClick={() => handleDelete(product.id)}
+                    sx={{
+                      textTransform: 'none', // Evitar texto en mayúsculas
+                      borderRadius: '8px', // Bordes redondeados
+                    }}
+                  >
                     Eliminar
                   </Button>
                 </TableCell>
@@ -162,6 +337,7 @@ function ProductsList() {
           </TableBody>
         </Table>
       </TableContainer>
+
     </Box>
   );
 }

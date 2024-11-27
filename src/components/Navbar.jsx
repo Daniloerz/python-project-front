@@ -29,7 +29,6 @@ function Navbar() {
           <StyledLink to="/credit">Crear Cuenta de Crédito</StyledLink>
           <StyledLink to="/credit/accounts">Ver Cuentas de Crédito</StyledLink>
           <StyledLink to="/credit/purchase">Registrar Compra a Crédito</StyledLink>
-          <StyledLink to="/reports">Informes</StyledLink>
           <StyledButton onClick={handleLogout}>Cerrar Sesión</StyledButton>
         </Box>
       </Toolbar>
