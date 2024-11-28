@@ -195,7 +195,7 @@ function CatalogView() {
             onChange={(e) => setPaymentMethod(e.target.value)}
           >
             <MenuItem value="contra_entrega">Contra Entrega</MenuItem>
-            <MenuItem value="tarjeta_credito">
+            <MenuItem value="tarjeta">
               Tarjeta Crédito o Débito
             </MenuItem>
             <MenuItem value="efectivo">Efectivo</MenuItem>
